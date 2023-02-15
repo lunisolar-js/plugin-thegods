@@ -1,4 +1,4 @@
-import { isNumber } from '../../utils'
+import { isNumber } from './utils'
 
 const a001 = '祈福 求嗣'
 const a001a = '祭祀 祈福 求嗣'

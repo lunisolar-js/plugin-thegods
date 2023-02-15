@@ -1,4 +1,4 @@
-import { getBranchValue, getStemValue, getStemTrigram8Value } from '../../../utils'
+import { getBranchValue, getStemValue, getStemTrigram8Value } from '../utils'
 import {
   getCommonCheckGodFunc,
   getCheckGodFunc,

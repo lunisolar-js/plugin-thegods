@@ -2,7 +2,7 @@
 建除12神
 建满平收黑,除危定执黄; 成开皆可用,闭破不可当。
 */
-import { getBranchValue } from '../../../utils'
+import { getBranchValue } from '../utils'
 
 export const duty12GodNames = [
   '建',

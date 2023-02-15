@@ -1,5 +1,132 @@
-import { getBranchValue, getStemValue, getTranslation } from '../../../utils'
 import { YMDH_SINGLE_LOWER_SET } from '../constants'
+
+export const getYmdhSB = (
+  lsr: lunisolar.Lunisolar,
+  ymdh: YMDH,
+  buildFlag: 0 | 1 = 0
+): lunisolar.SB => (ymdh === 'month' ? lsr.getMonthBuilder(buildFlag)[0] : lsr.char8[ymdh])
+
+// 取地支值
+export const getBranchValue: StemOrBranchValueFunc = (
+  lsr: lunisolar.Lunisolar,
+  ymdh: YMDH,
+  div?: number
+) => {
+  let sb = getYmdhSB(lsr, ymdh, 0)
+  return div ? sb.branch.value % div : sb.branch.value
+}
+
+// 取天干值
+export const getStemValue: StemOrBranchValueFunc = (
+  lsr: lunisolar.Lunisolar,
+  ymdh: YMDH,
+  div?: number
+) => {
+  let sb = getYmdhSB(lsr, ymdh, 0)
+  return div ? sb.stem.value % div : sb.stem.value
+}
+/**
+ * 取得譯文
+ * @param key 譯文key
+ */
+export function getTranslation<T = any, U = LocaleData>(locale: U, key: string): T | string {
+  const keySplit = key.split('.')
+  let curr: any = locale
+  let res = key
+  const resAsCurr = (curr: any) => {
+    if (typeof curr === 'string' || typeof curr === 'number' || typeof curr === 'function') {
+      res = curr
+      return true
+    }
+    return false
+  }
+  while (keySplit.length >= 0) {
+    if (resAsCurr(curr)) break
+    if (keySplit.length === 0) break
+    const currKey = keySplit.shift()
+    if (currKey === undefined) return ''
+    if (Array.isArray(curr)) {
+      const idx = Number(currKey)
+      if (isNaN(idx) || idx >= curr.length) return ''
+      curr = curr[idx]
+      res = curr
+    } else if (curr.hasOwnProperty(currKey)) {
+      curr = curr[currKey]
+    } else {
+      return keySplit[keySplit.length - 1] || currKey
+    }
+  }
+  return res
+}
+
+export function isNumber(value: number | string): boolean {
+  return !isNaN(Number(value))
+}
+
+/**
+ * 通过天干和地支索引值，计算60个天干地支组合的索引
+ * @param stemValue 天干索引值
+ * @param branchValue 地支索引值
+ */
+export const computeSBValue = (stemValue: number, branchValue: number): number => {
+  // 如果一个为奇数一个为偶数，则不能组合
+  if ((stemValue + branchValue) % 2 !== 0) throw new Error('Invalid SB value')
+  return (stemValue % 10) + ((6 - (branchValue >> 1) + (stemValue >> 1)) % 6) * 10
+}
+
+export function cacheAndReturn<T = unknown>(
+  key: string,
+  getDataFn: () => T,
+  cache: Map<string, T>
+): T {
+  if (cache.has(key)) return cache.get(key) as T
+  const res = getDataFn()
+  cache.set(key, res)
+  return res
+}
+
+// 取天干八卦
+export const getStemTrigram8Value: StemOrBranchValueFunc = (
+  lsr: lunisolar.Lunisolar,
+  ymdh: 'year' | 'month' | 'day' | 'hour',
+  div?: number
+) => {
+  let sb = getYmdhSB(lsr, ymdh, 0)
+  const res = sb.stem.trigram8.valueOf()
+  return div ? res % div : res
+}
+
+/**
+  * 五鼠遁计算天干
+  ```
+  ---- 五鼠遁 ---
+  甲己还加甲，乙庚丙作初。
+  丙辛从戊起，丁壬庚子居。
+  戊癸起壬子，周而复始求。
+  ```
+  * @param fromStemValue 起始天干 (计算时柱天干则此处应为日柱天干)
+  * @param branchValue 目标地支 （计算时柱天干，时处应为时柱地支）
+  * @returns {SB} 返回天地支对象
+*/
+export function computeRatStem(fromStemValue: number, branchValue: number = 0): number {
+  const h2StartStemNum = (fromStemValue % 5) * 2
+  return (h2StartStemNum + branchValue) % 10
+}
+
+/**
+ * 把两个列表分别作为key为value合并成字典
+ * @param keyList key列表数组
+ * @param valueList value列表数组
+ */
+export function twoList2Dict<T = any>(keyList: string[], valueList: T[]): { [key: string]: T } {
+  const res: { [key: string]: T } = {}
+  for (let i = 0; i < keyList.length; i++) {
+    const key = keyList[i]
+    const value = valueList[i]
+    res[key] = value
+  }
+  return res
+}
 
 // 處理getGods方法的ymdh參數
 export function prettyGetGodsYMDH(ymdh: YmdhSu | string, defaultNull: true): YmdhSl | null

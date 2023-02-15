@@ -1,5 +1,4 @@
-import { getBranchValue, getStemValue, getYmdhSB } from '../../../utils'
-import { getCheckGodFunc } from '../utils'
+import { getBranchValue, getStemValue, getYmdhSB, getCheckGodFunc } from '../utils'
 import { goDeadBadAct, leave4BadAct, getAct, commonOnlyBad } from '../actData'
 import { MEETING_DES } from '../constants'
 

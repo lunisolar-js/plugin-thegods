@@ -4,7 +4,7 @@
 ----
 */
 
-import { getBranchValue, getStemValue } from '../../../utils'
+import { getBranchValue, getStemValue } from '../utils'
 
 export const life12GodNames = [
   '長生',

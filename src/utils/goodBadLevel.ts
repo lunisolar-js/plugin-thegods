@@ -32,7 +32,7 @@ import {
   PARDON_WISH,
   GOD_LEVEL_DICT
 } from '../constants'
-import { getBranchValue } from '../../../utils'
+import { getBranchValue } from '../utils'
 
 type FilterActHooksKey = 'l0' | 'l1' | 'l2' | 'l3'
 

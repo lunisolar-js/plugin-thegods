@@ -1,5 +1,4 @@
-import { getBranchValue } from '../../../utils'
-import { getCommonCheckGodFunc } from '../utils'
+import { getBranchValue, getCommonCheckGodFunc } from '../utils'
 import { jieShaBadAct, jieShaBadActStr, commonOnlyBad2 } from '../actData'
 import { MEETING_DES } from '../constants'
 import { getLife12God } from './life12Gods'

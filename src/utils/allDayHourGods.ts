@@ -1,6 +1,6 @@
 import { hourGods, HourGods } from '../gods/hourGods'
 import { getBy12GodIdx, getBy12GodKeyByIdx, getBy12GodDataByKey } from '../gods/by12Gods'
-import { computeRatStem } from '../../../utils'
+import { computeRatStem } from './index'
 
 const hourGodsSbDict: (string[][] | null)[] = new Array(60).fill(null)
 const hourGodsSbLuck: number[][] = new Array(60)

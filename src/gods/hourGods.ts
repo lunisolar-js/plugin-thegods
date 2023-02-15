@@ -1,5 +1,10 @@
-import { getBranchValue, getStemValue, getYmdhSB } from '../../../utils'
-import { getCheckGodFunc, getCommonCheckGodFunc } from '../utils'
+import {
+  getBranchValue,
+  getStemValue,
+  getYmdhSB,
+  getCheckGodFunc,
+  getCommonCheckGodFunc
+} from '../utils'
 import { NINE_UGLILY_DAY, NINE_UGLILY_TERM_ORDER } from '../constants'
 
 const hourGodNames = [

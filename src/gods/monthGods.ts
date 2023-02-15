@@ -1,6 +1,6 @@
-import { getBranchValue, getStemValue, computeSBValue, getYmdhSB } from '../../../utils'
+import { getBranchValue, getStemValue, computeSBValue, getYmdhSB } from '../utils'
 import { getCommonCheckGodFunc, monthGeneralDescGodFunc, getCheckGodFunc } from '../utils'
-import { getHateFrontAndBack } from '../../../utils/direction24'
+import { getHateFrontAndBack } from '../utils/direction24'
 import {
   deGoodAct,
   heavenWishGoodAct,
@@ -1154,15 +1154,15 @@ const monthGodsA: { [key: string]: GodDictItem } = {
         const [front, back] = getHateFrontAndBack(lsr.getMonthBuilder(0)[0].branch.value)
         const res: number[] = []
         const sn = lsr.getSeasonIndex()
-        const frontStemValue = front.stem.map(item => item.value)
+        const frontStemValue = front.stem
         // 冬春己不将
         if (sn === 0 || sn === 3) frontStemValue.push(5)
         // 夏秋戊不将
         if (sn === 1 || sn === 2) frontStemValue.push(4)
         for (const fValue of frontStemValue) {
           for (const b of back.branch) {
-            if ((fValue + b.value) % 2 !== 0) continue
-            res.push(computeSBValue(fValue, b.value))
+            if ((fValue + b) % 2 !== 0) continue
+            res.push(computeSBValue(fValue, b))
           }
         }
         return res

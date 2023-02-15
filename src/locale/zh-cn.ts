@@ -1,5 +1,5 @@
 import { GOD_QUERY_STRING as GQS } from '../constants'
-import { twoList2Dict } from '../../../utils'
+import { twoList2Dict } from '../utils'
 import { defaultActs } from '../actData'
 
 const createActsLocaleDict = () => {

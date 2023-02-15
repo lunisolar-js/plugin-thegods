@@ -11,8 +11,7 @@ by12Gods (black & yellow 12 gods)
 
 */
 
-import { getBranchValue } from '../../../utils'
-import { getCheckGodFunc } from '../utils'
+import { getBranchValue, getCheckGodFunc } from '../utils'
 
 export const by12GodNames = [
   '青龍',
