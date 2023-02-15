@@ -1,5 +1,5 @@
 {
-  "name": "lunisolar-plugin-thegods",
+  "name": "@lunisolar/plugin-thegods",
   "version": "0.0.1",
   "description": "lunisolar.js 神煞宜忌插件",
   "main": "dist/index.js",
@@ -10,6 +10,21 @@
     "lint": "eslint --fix --ext .js,.ts src/ typings/ __tests__/",
     "test": "jest"
   },
+  "keywords": [
+    "lunisolar",
+    "plugin",
+    "lunar",
+    "神煞",
+    "宜忌",
+    "协纪辨方书",
+    "农历",
+    "建除十二神"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunisolar-js/plugin-thegods.git"
+  },
+  "author": "Natron Kan (waterbeside)",
   "license": "GPL-3.0",
   "devDependencies": {
     "@jest/types": "^29.4.2",
