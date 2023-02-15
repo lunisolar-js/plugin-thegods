@@ -1,15 +1,10 @@
+/// <reference path="./base.d.ts" />
+
 import type { PluginFunc } from 'lunisolar'
 
-class GodBase {
-  readonly data: GodBaseClassData
-  constructor(data: GodBaseClassDataParam)
-  get key(): string
-  toString(): string
-}
-
 export class God {
-  private godBase: GodBase
-  private lang: string
+  readonly godBase: GodBase
+  readonly lang: string
   constructor(opt: GodClassOpt)
   get key(): string
   get data(): GodBaseClassData
@@ -17,8 +12,8 @@ export class God {
   get name(): string
   get cate(): YMDH | null
   get luckLevel(): number
-  get good(): string
-  get bad(): string
+  get good(): string[]
+  get bad(): string[]
   toString(): string
 }
 

@@ -1,3 +1,25 @@
+class GodBase {
+  readonly data: GodBaseClassData
+  constructor(data: GodBaseClassDataParam)
+  get key(): string
+  toString(): string
+}
+
+class God {
+  readonly godBase: GodBase
+  readonly lang: string
+  constructor(opt: GodClassOpt)
+  get key(): string
+  get data(): GodBaseClassData
+  get alias(): string[]
+  get name(): string
+  get cate(): YMDH | null
+  get luckLevel(): number
+  get good(): string[]
+  get bad(): string[]
+  toString(): string
+}
+
 type YMDH = 'year' | 'month' | 'day' | 'hour'
 
 type YmdhSu = 'Y' | 'M' | 'D' | 'H'
