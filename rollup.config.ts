@@ -17,13 +17,9 @@ const formatName = (n: string) => {
     .map((v, i) => (i === 0 ? v.trim() : upCaseFirst(v.trim())))
     .join('')
 }
-const formatGlobalName = (name: string) =>
-  formatName(name)
-    .trim()
-    .replace(/^\d|[^a-z\A-Z\d]+/g, '_')
 
 const input = 'src/index.ts'
-const pluginGlobelName = formatGlobalName(pkg.name)
+const pluginGlobelName = 'lunisolarPlugin_TheGods'
 const rollupConfig = [
   defineConfig({
     input,
@@ -66,7 +62,7 @@ const rollupConfig = [
         defineConfig({
           input,
           output: {
-            name: `${pluginGlobelName}_locale_${fileName}`,
+            name: `${pluginGlobelName}_locale_${formatName(fileName)}`,
             file: path.join(outputDir, `${fileName}.js`),
             format: 'umd'
           },
