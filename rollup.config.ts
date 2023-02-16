@@ -19,7 +19,7 @@ const formatName = (n: string) => {
 }
 
 const input = 'src/index.ts'
-const pluginGlobelName = 'lunisolarPlugin_TheGods'
+const pluginGlobelName = 'lunisolarPlugin_theGods'
 const rollupConfig = [
   defineConfig({
     input,
